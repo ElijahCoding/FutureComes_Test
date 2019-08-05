@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
         Artisan::call('migrate:fresh');
 
         factory('App\Models\User')->create([
-            'name' => 'elijah',
-            'email' => 'elijah@gmail.com',
-            'password' => bcrypt('hellojava')
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'password' => bcrypt('password')
         ]);
 
         factory('App\Models\User', 5000)->create();
