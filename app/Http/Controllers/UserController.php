@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function show(User $user)
+    public function show($id)
     {
-        return view('users.show', compact('user'));
+        $user = User::whereId($id)->first();
+        $articles = $user->articles()->paginate(5);
+
+        return view('users.show', compact('user', 'articles'));
     }
 }

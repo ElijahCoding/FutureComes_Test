@@ -6,18 +6,20 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        {{ $user->name }}
-                        <span class="float-right">created by <em><strong><a href="{{ route('user.show', $article->user->id) }}">{{ $article->user->name }}</a></strong></em></span>
+                        {{ $user->name }} ({{ $user->email }})
+                        <span class="float-right">created at <em><strong>{{ $user->created_at->format('d-m-y') }}</strong></em> ({{ $user->created_at->diffForHumans() }})</span>
                     </div>
 
                     <div class="card-body">
-                        <h3>{{ $article->body }}</h3>
                         <ul class="list-group list-group-flush">
-                            @foreach ($article->comments as $comment)
+                            @foreach ($articles as $article)
                                 <li class="list-group-item">
-                                    {{ $comment->body }} (<strong>{{ $comment->created_at->diffForHumans() }}</strong>) {{ $comment->created_at->format('d-m-y') }}
+                                    <a href="{{ route('article.show', $article->id) }}">
+                                        {{ $article->title }} (<strong>{{ $article->body }}</strong>)
+                                    </a>
                                 </li>
                             @endforeach
+                            {{ $articles->links() }}
                         </ul>
                     </div>
                 </div>

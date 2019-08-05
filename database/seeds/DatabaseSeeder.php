@@ -35,15 +35,34 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now()->subDays(2)
         ]);
 
+        factory('App\Models\Comment', 3)->create([
+            'article_id' => 2,
+            'user_id' => 1,
+            'created_at' => Carbon::now()->subDays(3)
+        ]);
+
         factory('App\Models\Comment', 6)->create([
             'article_id' => 3,
             'user_id' => 2,
             'created_at' => Carbon::now()->subDays(3)
         ]);
+
+        factory('App\Models\Comment', 6)->create([
+            'article_id' => 3,
+            'user_id' => 2,
+            'created_at' => Carbon::now()->subDays(4)
+        ]);
+
         factory('App\Models\Comment', 9)->create([
             'article_id' => 4,
             'user_id' => 3,
             'created_at' => Carbon::now()->subDays(4)
+        ]);
+
+        factory('App\Models\Comment', 9)->create([
+            'article_id' => 4,
+            'user_id' => 3,
+            'created_at' => Carbon::now()->subDays(5)
         ]);
     }
 }

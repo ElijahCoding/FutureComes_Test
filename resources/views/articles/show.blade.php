@@ -12,13 +12,17 @@
 
                     <div class="card-body">
                         <h3>{{ $article->body }}</h3>
-                        <ul class="list-group list-group-flush">
-                            @foreach ($article->comments as $comment)
-                                <li class="list-group-item">
-                                    {{ $comment->body }} (<strong>{{ $comment->created_at->diffForHumans() }}</strong>) {{ $comment->created_at->format('d-m-y') }}
-                                </li>
-                            @endforeach
-                        </ul>
+                        @if ($article->comments->count())
+                            <ul class="list-group list-group-flush">
+                                @foreach ($article->comments()->orderBy('created_at', 'desc')->get() as $comment)
+                                    <li class="list-group-item">
+                                        {{ $comment->body }} (<strong>{{ $comment->created_at->diffForHumans() }}</strong>) {{ $comment->created_at->format('d-m-y') }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>No comments</p>
+                        @endif
                     </div>
                 </div>
             </div>
