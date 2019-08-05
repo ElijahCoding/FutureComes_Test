@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,10 +29,21 @@ class DatabaseSeeder extends Seeder
 
         factory('App\Models\Article', 5000)->create();
 
-        factory('App\Models\Comment', 10)->create(['article_id' => 2, 'user_id' => 1]);
-        factory('App\Models\Comment', 15)->create(['article_id' => 3, 'user_id' => 2]);
-        factory('App\Models\Comment', 20)->create(['article_id' => 4, 'user_id' => 3]);
+        factory('App\Models\Comment', 3)->create([
+            'article_id' => 2,
+            'user_id' => 1,
+            'created_at' => Carbon::now()->subDays(2)
+        ]);
 
-        factory('App\Models\Comment', 5000)->create();
+        factory('App\Models\Comment', 6)->create([
+            'article_id' => 3,
+            'user_id' => 2,
+            'created_at' => Carbon::now()->subDays(3)
+        ]);
+        factory('App\Models\Comment', 9)->create([
+            'article_id' => 4,
+            'user_id' => 3,
+            'created_at' => Carbon::now()->subDays(4)
+        ]);
     }
 }
