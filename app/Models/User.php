@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -36,6 +37,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('ArticleCount', function (Builder $builder) {
+            $builder->withCount('articles');
+        });
+    }
+
+    public static function getTopFive()
+    {
+        return static::orderBy('articles_count', 'desc')->get()->take(5);
+    }
 
     public function articles()
     {
