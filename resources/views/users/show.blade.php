@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        {{ $article->title }}
+                        {{ $user->name }}
                         <span class="float-right">created by <em><strong><a href="{{ route('user.show', $article->user->id) }}">{{ $article->user->name }}</a></strong></em></span>
                     </div>
 

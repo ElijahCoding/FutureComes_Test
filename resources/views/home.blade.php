@@ -29,7 +29,7 @@
                         <ul class="list-group list-group-flush">
                             @foreach ($users as $user)
                                 <li class="list-group-item">
-                                    <a href="{{ $user->id }}">
+                                    <a href="{{ route('user.show', $user->id) }}">
                                         {{ $user->name }} ({{ $user->articles_count }} {{ str_plural('article', $user->articles_count) }})
                                     </a>
                                 </li>
@@ -47,7 +47,7 @@
                         <ul class="list-group list-group-flush">
                             @foreach ($comments as $comment)
                                 <li class="list-group-item">
-                                    <a href="/articles/{{ $comment->article->id }}#comment{{ $comment->id }}">
+                                    <a href="{{ route('article.show', $comment->article->id) }}">
                                         {{ $comment->body }} (<strong>{{ $comment->created_at->diffForHumans() }}</strong>) {{ $comment->created_at->format('d-m-y') }}
                                     </a>
                                 </li>
